@@ -9,7 +9,18 @@ if (!isset($_GET['action'])) {
             echo "<p class='error-text'>Nie wybrano poprawnej akcji!</p>";
             break;
 
-        case "add": ?>
+        case "add":
+            if (!isset($_GET['zestaw_id'])) {
+                echo "<p class='error-text'>Nie wybrano zestawu!</p>";
+                break;
+            }
+            $zestaw_id = $_GET['zestaw_id'];
+            $q_checkingZestaw = $conn->query("SELECT * FROM zestawy WHERE zestaw_id = '$zestaw_id';");
+            if ($q_checkingZestaw->num_rows == 0) {
+                echo "<p class='error-text'>Nie wybrano poprawnego zestawu!</p>";
+                break;
+            }
+            ?>
             <form action="" method="post" class="main-form">
                 <div class="form-group">
                     <label class="form-label" for="pytanie">Pytanie:</label>
@@ -28,8 +39,8 @@ if (!isset($_GET['action'])) {
                 $pytanie = $_POST['pytanie'];
                 $odpowiedz = $_POST['odpowiedz'];
 
-                $conn->query("INSERT INTO fiszki (pytanie, odpowiedz, ostatnio_wyswietlone) VALUES ('$pytanie', '$odpowiedz', '0000-00-00 00:00:00');");
-                header("Location: index.php");
+                $conn->query("INSERT INTO fiszki (zestaw_id, pytanie, odpowiedz, ostatnio_wyswietlone) VALUES ('$zestaw_id', '$pytanie', '$odpowiedz', '0000-00-00 00:00:00');");
+                header("Location: zestawy.php?action=view&zestaw_id=".$zestaw_id);
             }
             break;
         
