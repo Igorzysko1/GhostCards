@@ -26,11 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         echo "<p class='error-text'>Użytkownik o podanej nazwie nie istnieje.</p>";
     } else {
         $row_usernameCheck = $q_usernameCheck->fetch_assoc();
-        if ($haslo == md5($row_usernameCheck['haslo'])) {
-            echo "<p class='error-text'>Niepoprawne hasło!</p>";
-        } else {
+        if ($haslo == $row_usernameCheck['haslo']) {
             $_SESSION['uzytkownik_id'] = $row_usernameCheck['uzytkownik_id'];
             header("Location: index.php");
+        } else {
+            echo "<p class='error-text'>Niepoprawne hasło!</p>";
         }
     }
 }
