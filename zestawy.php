@@ -44,8 +44,12 @@ if (!isset($_GET['action'])) {
                             echo "<p class='fiszka-set-counter'>#$licznik</p>";
                             echo "<p class='fiszka-set-text'>Pytanie: ".$a_fiszkaInZestaw['pytanie']."</p>";
                             echo "<p class='fiszka-set-text'>Odpowiedź: ".$a_fiszkaInZestaw['odpowiedz']."</p>";
-                            echo "<a class='ui-button' href='fiszki.php?action=edit&fiszka_id=".$a_fiszkaInZestaw['fiszka_id']."'>Edytuj fiszkę</a>";
-                            echo "<a class='ui-button' href='fiszki.php?action=delete&fiszka_id=".$a_fiszkaInZestaw['fiszka_id']."'>Usuń fiszkę</a>";
+                            if (isset($_SESSION['uzytkownik_id'])) {
+                                if ($uzytkownik_id = $row_zestawData['uzytkownik_id']) {
+                                    echo "<a class='ui-button' href='fiszki.php?action=edit&fiszka_id=".$a_fiszkaInZestaw['fiszka_id']."'>Edytuj fiszkę</a>";
+                                    echo "<a class='ui-button' href='fiszki.php?action=delete&fiszka_id=".$a_fiszkaInZestaw['fiszka_id']."'>Usuń fiszkę</a>";
+                                }
+                            }
                             echo "</div>";
                             $licznik++;
                         }
