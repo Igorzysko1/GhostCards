@@ -99,6 +99,18 @@ if (!isset($_GET['action'])) {
                     </div>
                 </form>
                 <?php
+                if ($_SERVER['REQUEST_METHOD'] === "POST") {
+                    $nazwa = $_POST['nazwa'];
+                    $uzytkownik_id = $_SESSION['uzytkownik_id'];
+
+                    $q_checkingZestawName = $conn->query("SELECT * FROM zestawy WHERE nazwa = '$nazwa';");
+                    if ($q_checkingZestawName->num_rows > 0) {
+                        echo "<p class='error-text'>Podana nazwa już istnieje!</p>";
+                    } else {
+                        $conn->query("INSERT INTO zestawy (uzytkownik_id, nazwa) VALUES ('$uzytkownik_id', '$nazwa');");
+                        header("Location: index.php");
+                    }
+                }
             }
             break;
     }
