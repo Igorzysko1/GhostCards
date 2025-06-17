@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Cze 17, 2025 at 01:12 PM
+-- Generation Time: Cze 17, 2025 at 01:55 PM
 -- Wersja serwera: 10.4.32-MariaDB
 -- Wersja PHP: 8.2.12
 
@@ -29,9 +29,22 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `fiszki` (
   `fiszka_id` int(11) NOT NULL,
+  `zestaw_id` int(11) NOT NULL,
   `pytanie` text NOT NULL,
   `odpowiedz` varchar(255) NOT NULL,
   `ostatnio_wyswietlone` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `zestawy`
+--
+
+CREATE TABLE `zestawy` (
+  `zestaw_id` int(11) NOT NULL,
+  `uzytkownik_id` int(11) DEFAULT NULL,
+  `nazwa` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -45,6 +58,12 @@ ALTER TABLE `fiszki`
   ADD PRIMARY KEY (`fiszka_id`);
 
 --
+-- Indeksy dla tabeli `zestawy`
+--
+ALTER TABLE `zestawy`
+  ADD PRIMARY KEY (`zestaw_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -53,6 +72,12 @@ ALTER TABLE `fiszki`
 --
 ALTER TABLE `fiszki`
   MODIFY `fiszka_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `zestawy`
+--
+ALTER TABLE `zestawy`
+  MODIFY `zestaw_id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
