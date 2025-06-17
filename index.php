@@ -1,16 +1,18 @@
 <?php include "includes/header.php"; ?>
 
-<a href="fiszki.php?action=add">Dodaj fiszkę</a>
-<h1>Zestawy fiszek:</h1>
+<p class="heading-text">Zestawy fiszek:</p>
 <?php
 $q_selectZestawy = $conn->query("SELECT * FROM zestawy;");
 
+echo "<div class='fiszkas-list'>";
+
 while ($a_selectZestaw = $q_selectZestawy->fetch_assoc()) {
-    echo "<p>";
-    echo "<h3>".$a_selectZestaw['nazwa']."</h3>";
-    echo "<a href='zestawy.php?action=view&zestaw_id=".$a_selectZestaw['zestaw_id']."'>Zobacz zestaw</a>";
-    echo "</p>";
+    echo "<div class='fiszka-set'>";
+    echo "<p class='fiszka-set-name'>".$a_selectZestaw['nazwa']."</p>";
+    echo "<a href='zestawy.php?action=view&zestaw_id=".$a_selectZestaw['zestaw_id']."' class='view-fiszka'><i class='fa fa-eye'></i>&nbsp;&nbsp;Zobacz zestaw</a>";
+    echo "</div>";
 }
+echo "</div>";
 ?>
 
 <?php include "includes/footer.php" ?>

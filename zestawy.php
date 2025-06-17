@@ -25,14 +25,16 @@ if (!isset($_GET['action'])) {
                         echo "<p>Wybrany zestaw fiszek jest pusty.</p>"; # To nie jest error (powinno wygladac tak jak reszta)
                     } else {
                         $licznik = 1;
+                        echo "<div class='fiszkas-list'>";
                         while ($a_fiszkaInZestaw = $q_fiszkasInZestaw->fetch_assoc()) {
-                            echo "<p>";
-                            echo "<h2>Fiszka numer ".$licznik."</h2>";
-                            echo "Pytanie: ".$a_fiszkaInZestaw['pytanie'];
-                            echo "Odpowiedź: ".$a_fiszkaInZestaw['odpowiedz'];
-                            echo "</p>";
+                            echo "<div class='fiszka-set'>";
+                            echo "<p class='fiszka-set-counter'>#$licznik</p>";
+                            echo "<p class='fiszka-set-text'>Pytanie: ".$a_fiszkaInZestaw['pytanie']."</p>";
+                            echo "<p class='fiszka-set-text'>Odpowiedź: ".$a_fiszkaInZestaw['odpowiedz']."</p>";
+                            echo "</div>";
                             $licznik++;
                         }
+                        echo "</div>";
                     }
                 }
             }

@@ -37,7 +37,7 @@ if (!isset($_GET['action'])) {
                 } else {
                     $row = $q_FiszkaData->fetch_row(); ?>
                     <h1>Edytowanie fiszki <?= $row[1]; ?></h1>
-                    <form action="" method="post">
+                    <form action="" method="post" class="main-form">
                         <input type="text" name="pytanie" value="<?= $row[1]; ?>" placeholder="<?= $row[1]; ?>" required><br>
                         <input type="text" name="odpowiedz" value="<?= $row[2]; ?>" placeholder=<?= $row[2]; ?> required><br>
                         <input type="submit" value="Edytuj">
