@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Cze 17, 2025 at 01:55 PM
+-- Generation Time: Cze 17, 2025 at 05:27 PM
 -- Wersja serwera: 10.4.32-MariaDB
 -- Wersja PHP: 8.2.12
 
@@ -38,12 +38,24 @@ CREATE TABLE `fiszki` (
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla tabeli `uzytkownicy`
+--
+
+CREATE TABLE `uzytkownicy` (
+  `uzytkownik_id` int(11) NOT NULL,
+  `nazwa` varchar(255) NOT NULL,
+  `haslo` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla tabeli `zestawy`
 --
 
 CREATE TABLE `zestawy` (
   `zestaw_id` int(11) NOT NULL,
-  `uzytkownik_id` int(11) DEFAULT NULL,
+  `uzytkownik_id` int(11) NOT NULL,
   `nazwa` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -56,6 +68,12 @@ CREATE TABLE `zestawy` (
 --
 ALTER TABLE `fiszki`
   ADD PRIMARY KEY (`fiszka_id`);
+
+--
+-- Indeksy dla tabeli `uzytkownicy`
+--
+ALTER TABLE `uzytkownicy`
+  ADD PRIMARY KEY (`uzytkownik_id`);
 
 --
 -- Indeksy dla tabeli `zestawy`
@@ -72,6 +90,12 @@ ALTER TABLE `zestawy`
 --
 ALTER TABLE `fiszki`
   MODIFY `fiszka_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `uzytkownicy`
+--
+ALTER TABLE `uzytkownicy`
+  MODIFY `uzytkownik_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `zestawy`
