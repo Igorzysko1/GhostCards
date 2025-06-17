@@ -34,7 +34,9 @@ if (!isset($_GET['action'])) {
                     }
                     $q_fiszkasInZestaw = $conn->query("SELECT * FROM fiszki f INNER JOIN zestawy z ON f.zestaw_id = z.zestaw_id WHERE f.zestaw_id = '$zestaw_id';");
                     
-                    echo "<a href='zestawy.php?action=play&zestaw_id=".$zestaw_id."' class='ui-button-important'>Zagraj w zestaw</a>";
+                    if ($q_fiszkasInZestaw != 0) {
+                        echo "<a href='zestawy.php?action=play&zestaw_id=".$zestaw_id."' class='ui-button-important'>Zagraj w zestaw</a>";
+                    }
                     echo "</div>";
                     
                     if ($q_fiszkasInZestaw->num_rows == 0) {
