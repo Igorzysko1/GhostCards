@@ -78,6 +78,15 @@ if (!isset($_GET['action'])) {
                             if (isset($_SESSION['uzytkownik_id'])) {
                                 echo "<a href='zestawy.php?action=podpowiedz&fiszka_id=".$a_fiszkaInZestaw['fiszka_id']."' class='ui-button'>Dodaj podpowiedź</a>";
                             }
+                            $fiszka_id = $a_fiszkaInZestaw['fiszka_id'];
+                            $q_selectHints = $conn->query("SELECT * FROM podpowiedzi WHERE fiszka_id = '$fiszka_id';");
+                            if ($q_selectHints->num_rows > 0) {
+                                while($a_selectHint = $q_selectHints->fetch_assoc()) {
+                                    echo "<div class='hints' style='display: none;'>";
+                                    echo "<big>".$a_selectHint['tresc']."</big>";
+                                    echo "</div>";
+                                }
+                            }
                             $licznik++;
                         }
                         echo "<div class='fiszkas-buttons'>";
