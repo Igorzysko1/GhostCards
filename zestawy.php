@@ -30,7 +30,7 @@ if (!isset($_GET['action'])) {
                         echo "<p class='text-normal'>Wybrany zestaw fiszek jest pusty.</p>";
                     } else {
                         $licznik = 1;
-                        echo "<a href='zestawy.php?action=play&zestaw_id=".$zestaw_id."' class='ui-button'>Zagraj w zestaw</a>";
+                        echo "<a href='zestawy.php?action=play&zestaw_id=".$zestaw_id."' class='ui-button-important'>Zagraj w zestaw</a>";
                         echo "<div class='fiszkas-list'>";
                         while ($a_fiszkaInZestaw = $q_fiszkasInZestaw->fetch_assoc()) {
                             echo "<div class='fiszka-set'>";

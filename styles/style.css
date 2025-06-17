@@ -9,7 +9,7 @@
   --orange-accent: #ff5900;
   --purple-dark: #4c004c;
   --purple-dark-bg: #660066da;
-  --purple-light: #da70d6;
+  --purple-light: #ff65fa;
   --black: #1a1a1a;
   --white: #f8f8ff;
 }
@@ -60,6 +60,21 @@ footer {
 
 .ui-button:hover {
   color: var(--orange-light);
+}
+
+.ui-button-important {
+  color: var(--orange-dark);
+  background-color: var(--orange-dark-bg);
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.ui-button-important:hover {
+  color: var(--orange-light);
+  background-color: var(--orange-dark);
+  transition: 0.3s;
 }
 
 /* misc end */
@@ -157,7 +172,6 @@ footer {
 
 main {
   width: 90%;
-  background: var(--purple-dark-bg);
   border-radius: 10px;
   padding: 30px;
 
@@ -166,9 +180,7 @@ main {
   align-items: center;
   justify-content: center;
   gap: 50px;
-
-  height: 80vh;
-  overflow-y: auto;
+  height: fit-content;
 }
 
 /* main styles end */
@@ -178,19 +190,20 @@ main {
 .heading-text {
   font-size: 225%;
   color: var(--purple-light);
+  align-self: flex-start;
 }
 
 .fiszkas-list {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
   gap: 5%;
-  width: 90%;
+  width: 100%;
 }
 
 .fiszka-set {
-  width: 20%;
+  width: fit-content;
+  max-width: 30%;
   height: fit-content;
   border-radius: 20px;
   padding: 20px;
@@ -201,7 +214,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 25px;
 
   border-radius: 16px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
@@ -209,17 +222,18 @@ main {
 
 .fiszka-set-name {
   color: var(--purple-light);
-  font-size: 150%;
+  font-size: 130%;
 }
 
 .view-fiszka {
   color: var(--purple-light);
   text-decoration: none;
-  font-size: 120%;
+  font-size: 110%;
   transition: 0.3s;
   padding: 5px;
   border-radius: 8px;
   width: 100%;
+  text-align: center;
 }
 
 .view-fiszka:hover {
@@ -294,7 +308,9 @@ main {
   max-width: fit-content;
   max-height: fit-content;
 
-  background: purple;
+  background: var(--purple-dark-bg);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(4px);
 }
 
@@ -313,6 +329,7 @@ main {
   color: var(--purple-light);
   transition: 0.3s;
   outline: none;
+  border-radius: 10px;
 }
 
 .form-input:focus {
@@ -413,12 +430,14 @@ main {
   display: none;
   opacity: 0;
   visibility: hidden;
+  padding: 0;
 }
 
 .zestaw-inner.flipped .odpowiedz {
   display: flex;
   opacity: 1;
   visibility: visible;
+  padding: 20px;
 }
 
 /* fiszka animation end */
