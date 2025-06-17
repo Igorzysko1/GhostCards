@@ -58,7 +58,7 @@ function displayFiszka() {
       hintsArr.forEach((div) => {
         div.style.display = "none";
       });
-      hintsArr[rand].style.display = "block";
+      hintsArr[rand].style.display = "flex";
       console.log(rand);
     }, getRandomInt(4000, 7000));
   }

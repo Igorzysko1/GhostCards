@@ -95,7 +95,7 @@ if (!isset($_GET['action'])) {
                                 echo "<div class='hints'>";
                                 while($a_selectHint = $q_selectHints->fetch_assoc()) {
                                     $losowa_liczba = rand(1, 3);
-                                    echo "<div class='hints-inner'>";
+                                    echo "<div class='hints-inner fade-in'>";
                                     echo "<img src='images/ghost".$losowa_liczba.".png' style='width: 100px; height: 100px; alt='duszek' class='ghost_photo'>";
                                     echo "<p class='hint-text'>".$a_selectHint['tresc']."</p>";
                                     echo "</div>";
