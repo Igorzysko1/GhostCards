@@ -1,6 +1,10 @@
 <?php
 include "includes/header.php";
 
+if (!isset($_SESSION['uzytkownik_id'])) {
+    header("Location: logowanie.php");
+}
+
 if (!isset($_GET['action'])) {
     echo "<p class='error-text'>Nie wybrano żadnej akcji!</p>";
 } else {
