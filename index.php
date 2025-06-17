@@ -1,4 +1,5 @@
 <?php include "includes/header.php"; ?>
+
 <a href="fiszki.php?action=add">Dodaj fiszkę</a>
 <h1>Fiszki:</h1>
 <?php
@@ -11,3 +12,5 @@ while ($a_selectFiszka = $q_selectFiszkas->fetch_assoc()) {
     echo "</p>";
 }
 ?>
+
+<?php include "includes/footer.php" ?>
