@@ -22,9 +22,10 @@ if (!isset($_GET['action'])) {
                     $q_fiszkasInZestaw = $conn->query("SELECT * FROM fiszki f INNER JOIN zestawy z ON f.zestaw_id = z.zestaw_id WHERE f.zestaw_id = '$zestaw_id';");
 
                     if ($q_fiszkasInZestaw->num_rows == 0) {
-                        echo "<p>Wybrany zestaw fiszek jest pusty.</p>"; # To nie jest error (powinno wygladac tak jak reszta)
+                        echo "<p class='text-normal'>Wybrany zestaw fiszek jest pusty.</p>";
                     } else {
                         $licznik = 1;
+                        echo "<a href='zestawy.php?action=play&zestaw_id=".$zestaw_id."' class='ui-button'>Zagraj w zestaw</a>";
                         echo "<div class='fiszkas-list'>";
                         while ($a_fiszkaInZestaw = $q_fiszkasInZestaw->fetch_assoc()) {
                             echo "<div class='fiszka-set'>";
@@ -35,6 +36,37 @@ if (!isset($_GET['action'])) {
                             $licznik++;
                         }
                         echo "</div>";
+                    }
+                }
+            }
+            break;
+
+        case "play":
+            if (!isset($_GET['zestaw_id'])) {
+                echo "<p class='text-error'>Nie wybrano zestawu!</p>";
+            } else {
+                $zestaw_id = $_GET['zestaw_id'];
+                $q_zestawData = $conn->query("SELECT * FROM zestawy WHERE zestaw_id = '$zestaw_id';");
+
+                if ($q_zestawData->num_rows == 0) {
+                    echo "<p class='error-text'>Nie wybrano poprawnego zestawu!</p>";
+                } else {
+                    $q_fiszkasInZestaw = $conn->query("SELECT * FROM fiszki f INNER JOIN zestawy z ON f.zestaw_id = z.zestaw_id WHERE f.zestaw_id = '$zestaw_id';");
+
+                    if ($q_fiszkasInZestaw->num_rows == 0) {
+                        echo "<p class='error-text'>Wybrany zestaw jest pusty.</p>";
+                    } else {
+                        $counter = 1;
+                        while ($a_fiszkaInZestaw = $q_fiszkasInZestaw->fetch_assoc()) {
+                            echo "<div class='zestaw' id='zestaw".$counter."' style='display: none;'>";
+                                echo "<div class='pytanie' id='pytanie".$counter."'>";
+                                    echo "<p>".$a_fiszkaInZestaw['pytanie']."</p>";
+                                echo "</div>";
+                                echo "<div class='odpowiedz' id='odpowiedz".$counter."'>";
+                                    echo "<p>".$a_fiszkaInZestaw['odpowiedz']."</p>";
+                                echo "</div>";
+                            echo "</div>";
+                        }
                     }
                 }
             }
