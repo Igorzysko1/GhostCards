@@ -115,6 +115,47 @@ if (!isset($_GET['action'])) {
                 }
             }
             break;
+        case "edit":
+            if (!isset($_SESSION['uzytkownik_id'])) {
+                header("Location: logowanie.php");
+            } else {
+                if (!isset($_GET['zestaw_id'])) {
+                    echo "<p class='error-text'>Nie wybrano zestawu!</p>";
+                } else {
+                    $zestaw_id = $_GET['zestaw_id'];
+                    $q_zestawData = $conn->query("SELECT * FROM zestawy WHERE zestaw_id = '$zestaw_id';");
+
+                    if ($q_zestawData->num_rows == 0) {
+                        echo "<p class='error-text'>Nie wybrano poprawnego zestawu!</p>";
+                    } else {
+                        $row_zestawData = $q_zestawData->fetch_assoc();
+                        $uzytkownik_id = $_SESSION['uzytkownik_id'];
+
+                        if ($row_zestawData['uzytkownik_id'] != $uzytkownik_id) {
+                            echo "<p class='error-text'>Zestaw nie jest twój!</p>";
+                        } else {
+                            ?>
+                            <form action="" method="post" class="main-form">
+                                <div class="form-group">
+                                    <label for="nazwa" class="form-label">Wpisz nową nazwę</label>
+                                    <input type="text" name="nazwa" id="nazwa" value=<?= $row_zestawData['nazwa']; ?> placeholder=<?= $row_zestawData['nazwa']; ?> class="form-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Zmień nazwę" class="form-submit">
+                                </div>
+                            </form>
+                            <?php
+                            if ($_SERVER['REQUEST_METHOD'] === "POST") {
+                                $nazwa = $_POST['nazwa'];
+                                $conn->query("UPDATE zestawy SET nazwa = '$nazwa' WHERE zestaw_id = '$zestaw_id';");
+                                header("Location: index.php");
+                            }
+                        }
+                    }
+                }
+            }
+        break;
+
     }
 }
 
