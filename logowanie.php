@@ -1,18 +1,20 @@
 <?php include "includes/header.php"; ?>
 
-<form action="" method="post">
+<form action="" method="post" class="main-form">
     <div class="form-group">
-        <label for="nazwa">Wpisz nazwę użytkownika</label>
-        <input type="text" name="nazwa" id="nazwa" required>
+        <label class="form-label" for="nazwa">Wpisz nazwę użytkownika</label>
+        <input type="text" name="nazwa" id="nazwa" class="form-input" required>
     </div>
     <div class="form-group">
-        <label for="haslo">Wpisz hasło</label>
-        <input type="password" name="haslo" id="haslo" required>
+        <label class="form-label" for="haslo">Wpisz hasło</label>
+        <input type="password" name="haslo" id="haslo" class="form-input" required>
     </div>
-    <input type="submit" value="Zaloguj się">
+    <div class="form-group">
+        <input type="submit" value="Zaloguj się" class="form-submit">
+    </div>
 </form>
 
-<p>Nie masz konta? <a href="rejestracja.php">Stwórz konto</a></p>
+<p class="text-normal">Nie masz konta? <a href="rejestracja.php">Stwórz konto</a></p>
 
 <?php
 if ($_SERVER['REQUEST_METHOD'] === "POST") {

@@ -1,15 +1,17 @@
 <?php include "includes/header.php"; ?>
 
-<form action="" method="post">
+<form action="" method="post" class="main-form">
     <div class="form-group">
-        <label for="nazwa">Wpisz nazwę użytkownika</label>
-        <input type="text" name="nazwa" id="nazwa" required>
+        <label class="form-label" for="nazwa">Nazwa użytkownika</label>
+        <input type="text" name="nazwa" id="nazwa" class="form-input" required>
     </div>
     <div class="form-group">
-        <label for="haslo">Wpisz hasło</label>
-        <input type="password" name="haslo" id="haslo" required>
+        <label class="form-label" for="haslo">Hasło</label>
+        <input type="password" name="haslo" id="haslo" class="form-input" required>
     </div>
-    <input type="submit" value="Zarejestruj się">
+    <div class="form-group">
+        <input type="submit" value="Zarejestruj się" class="form-submit">
+    </div>
 </form>
 
 <?php

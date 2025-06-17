@@ -12,15 +12,15 @@ if (!isset($_GET['action'])) {
         case "add": ?>
             <form action="" method="post" class="main-form">
                 <div class="form-group">
-                    <label for="pytanie">Pytanie:</label>
-                    <input type="text" name="pytanie" id="pytanie" required>
+                    <label class="form-label" for="pytanie">Pytanie:</label>
+                    <input type="text" name="pytanie" id="pytanie" class="form-input" required>
                 </div>
                 <div class="form-group">
-                    <label for="odpowiedz">Odpowiedź:</label>
-                    <input type="text" name="odpowiedz" id="odpowiedz" required>
+                    <label class="form-label" for="odpowiedz">Odpowiedź:</label>
+                    <input type="text" name="odpowiedz" id="odpowiedz" class="form-input" required>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Wyślij">
+                    <input type="submit" value="Wyślij" class="form-submit">
                 </div>
             </form>
             <?php
@@ -46,9 +46,17 @@ if (!isset($_GET['action'])) {
                     $row = $q_FiszkaData->fetch_row(); ?>
                     <h1>Edytowanie fiszki <?= $row[1]; ?></h1>
                     <form action="" method="post" class="main-form">
-                        <input type="text" name="pytanie" value="<?= $row[1]; ?>" placeholder="<?= $row[1]; ?>" required><br>
-                        <input type="text" name="odpowiedz" value="<?= $row[2]; ?>" placeholder=<?= $row[2]; ?> required><br>
-                        <input type="submit" value="Edytuj">
+                        <div class="form-group">
+                            <label class="form-label" for="pytanie">Pytanie:</label>
+                            <input type="text" name="pytanie" id="pytanie" value="<?= $row[1]; ?>" placeholder="<?= $row[1]; ?>" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="odpowiedz">Odpowiedź:</label>
+                            <input type="text" name="odpowiedz" id="odpowiedz" value="<?= $row[2]; ?>" placeholder=<?= $row[2]; ?> required>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Edytuj" class="form-submit">
+                        </div>
                     </form>
                     <?php
                     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
