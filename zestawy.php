@@ -75,12 +75,49 @@ if (!isset($_GET['action'])) {
                                 echo "</div>";
                             echo "</div>";
                             echo "</div>";
+                            if (isset($_SESSION['uzytkownik_id'])) {
+                                echo "<a href='zestawy.php?action=podpowiedz&fiszka_id=".$a_fiszkaInZestaw['fiszka_id']."' class='ui-button'>Dodaj podpowiedź</a>";
+                            }
                             $licznik++;
                         }
                         echo "<div class='fiszkas-buttons'>";
                         echo "<button class='fiszka-prev' onclick='previousFiszka()'><i class='fa fa-angle-double-left'></i>&nbsp;&nbsp;Poprzednia fiszka</button>";
                         echo "<button class='fiszka-next' onclick='nextFiszka()'>Następna fiszka&nbsp;&nbsp;<i class='fa fa-angle-double-right'></i></button>";
                         echo "</div>";
+                    }
+                }
+            }
+            break;
+
+        case "podpowiedz":
+            if (!isset($_SESSION['uzytkownik_id'])) {
+                header("Location: logowanie.php");
+            } else {
+                if (!isset($_GET['fiszka_id'])) {
+                    echo "<p class='error-text'>Nie wybrano fiszki!</p>";
+                } else {
+                    $fiszka_id = $_GET['fiszka_id'];
+                    $q_specificFiszka = $conn->query("SELECT * FROM fiszki WHERE fiszka_id = '$fiszka_id';");
+                    if ($q_specificFiszka->num_rows == 0) {
+                        echo "<p class='error-text'>Nie wybrano poprawnej fiszki!</p>";
+                    } else { ?>
+                        <form action="" method="post" class='main-form'>
+                            <div class="form-group">
+                                <label for="tresc" class="form-label">Wpisz treść podpowiedzi</label>
+                                <input type="text" class="form-input" name="tresc" id="tresc" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Dodaj podpowiedź" class="form-submit">
+                            </div>
+                        </form>
+                        <?php 
+                        if ($_SERVER['REQUEST_METHOD'] === "POST") {
+                            $tresc = $_POST['tresc'];
+                            $conn->query("INSERT INTO podpowiedzi (fiszka_id, tresc) VALUES ('$fiszka_id', '$tresc');");
+                            $q_zestawID = $conn->query("SELECT f.zestaw_id FROM fiszki f INNER JOIN zestawy z ON f.zestaw_id = z.zestaw_id WHERE f.fiszka_id = '$fiszka_id';");
+                            $row_zestawID = $q_zestawID->fetch_assoc();
+                            header("Location: zestawy.php?action=play&zestaw_id=".$row_zestawID['zestaw_id']);
+                        }
                     }
                 }
             }
