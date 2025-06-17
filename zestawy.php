@@ -34,13 +34,14 @@ if (!isset($_GET['action'])) {
                     }
                     $q_fiszkasInZestaw = $conn->query("SELECT * FROM fiszki f INNER JOIN zestawy z ON f.zestaw_id = z.zestaw_id WHERE f.zestaw_id = '$zestaw_id';");
                     
+                    echo "<a href='zestawy.php?action=play&zestaw_id=".$zestaw_id."' class='ui-button-important'>Zagraj w zestaw</a>";
+                    echo "</div>";
+                    
                     if ($q_fiszkasInZestaw->num_rows == 0) {
                         echo "<p class='text-normal'>Wybrany zestaw fiszek jest pusty.</p>";
                     } else {
                         $licznik = 1;
                         
-                        echo "<a href='zestawy.php?action=play&zestaw_id=".$zestaw_id."' class='ui-button-important'>Zagraj w zestaw</a>";
-                        echo "</div>";
                         echo "<div class='fiszkas-list'>";
                         while ($a_fiszkaInZestaw = $q_fiszkasInZestaw->fetch_assoc()) {
                             echo "<div class='fiszka-set'>";
