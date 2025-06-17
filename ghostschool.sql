@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Cze 17, 2025 at 05:27 PM
+-- Generation Time: Cze 17, 2025 at 08:08 PM
 -- Wersja serwera: 10.4.32-MariaDB
 -- Wersja PHP: 8.2.12
 
@@ -33,6 +33,18 @@ CREATE TABLE `fiszki` (
   `pytanie` text NOT NULL,
   `odpowiedz` varchar(255) NOT NULL,
   `ostatnio_wyswietlone` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `podpowiedzi`
+--
+
+CREATE TABLE `podpowiedzi` (
+  `podpowiedz_id` int(11) NOT NULL,
+  `fiszka_id` int(11) NOT NULL,
+  `tresc` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -70,6 +82,12 @@ ALTER TABLE `fiszki`
   ADD PRIMARY KEY (`fiszka_id`);
 
 --
+-- Indeksy dla tabeli `podpowiedzi`
+--
+ALTER TABLE `podpowiedzi`
+  ADD PRIMARY KEY (`podpowiedz_id`);
+
+--
 -- Indeksy dla tabeli `uzytkownicy`
 --
 ALTER TABLE `uzytkownicy`
@@ -90,6 +108,12 @@ ALTER TABLE `zestawy`
 --
 ALTER TABLE `fiszki`
   MODIFY `fiszka_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `podpowiedzi`
+--
+ALTER TABLE `podpowiedzi`
+  MODIFY `podpowiedz_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `uzytkownicy`
