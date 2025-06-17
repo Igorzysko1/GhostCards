@@ -15,8 +15,7 @@
 <body>
     <header>
         <section class="header-data">
-            <!-- logo -->
-            <span class="app-name"><span class="letter-highlight">G</span>host<span class="letter-highlight">C</span>ards</span>
+            <img src="images/main-logo.png" alt="Logo Aplikacji" class="main-logo">
         </section>
         <nav class="header-nav">
             <a href="index.php" class="header-button">Strona Główna</a>

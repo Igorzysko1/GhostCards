@@ -28,6 +28,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 100px;
 }
 
 /* misc end */
@@ -40,7 +41,6 @@ header {
   align-items: center;
 
   width: 90%;
-  height: 100px;
   padding: 10px 5%;
 
   background: var(--purple-dark-bg);
@@ -58,13 +58,8 @@ header {
   display: flex;
 }
 
-.app-name {
-  font-size: 140%;
-}
-
-.letter-highlight {
-  color: var(--orange--accent);
-  font-size: larger;
+.main-logo {
+  height: 150px;
 }
 
 .header-button {
@@ -80,6 +75,11 @@ header {
   padding: 5px;
   background: var(--purple-light);
   color: var(--purple-dark);
+}
+
+.header-nav {
+  display: flex;
+  gap: 30px;
 }
 
 /* header styles end */
