@@ -53,6 +53,15 @@ if (!isset($_GET['action'])) {
                 }
             }
             break;
+        case "delete":
+            if (!isset($_GET['fiszka_id'])) {
+                echo "<p class='error-text'>Brak id fiszki!</p>";
+            } else {
+                $fiszka_id = $_GET['fiszka_id'];
+                $conn->query("DELETE FROM fiszki WHERE fiszka_id = '$fiszka_id';");
+                header("Location: index.php");
+            }
+            break;
     }
 }
 include "includes/footer.php";
