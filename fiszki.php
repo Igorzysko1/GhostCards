@@ -2,22 +2,20 @@
 include "includes/header.php";
 
 if (!isset($_GET['action'])) {
-    echo "<p>Nie wybrano żadnej akcji</p>";
+    echo "<p class='error-text'>Nie wybrano żadnej akcji!</p>";
 } else {
     switch ($_GET['action']) {
         default:
-            echo "<p>Nie wybrano poprawnej akcji</p>";
+            echo "<p class='error-text'>Nie wybrano poprawnej akcji!</p>";
             break;
 
         case "add": ?>
             <form action="" method="post">
-                <input type="text" name="pytanie"><br>
-                <input type="text" name="odpowiedz">
+                <input type="text" name="pytanie" required><br>
+                <input type="text" name="odpowiedz" required><br>
                 <input type="submit" value="Wyślij">
             </form>
             <?php
-            $conn = new mysqli("localhost", "root", "", "ghostschool");
-
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $pytanie = $_POST['pytanie'];
                 $odpowiedz = $_POST['odpowiedz'];
@@ -25,7 +23,37 @@ if (!isset($_GET['action'])) {
                 $conn->query("INSERT INTO fiszki (pytanie, odpowiedz, ostatnio_wyswietlone) VALUES ('$pytanie', '$odpowiedz', '0000-00-00 00:00:00');");
                 header("Location: index.php");
             }
-}
+            break;
+        
+        case "edit":
+            if (!isset($_GET['fiszka_id'])) {
+                echo "<p class='error-text'>Brak id fiszki!</p>";
+            } else {
+                $fiszka_id = $_GET['fiszka_id'];
+                $q_FiszkaData = $conn->query("SELECT * FROM fiszki WHERE fiszka_id = '$fiszka_id';");
+                
+                if ($q_FiszkaData->num_rows == 0) {
+                    echo "<p class='error-text'>Wybrano niepoprawną fiszkę!</p>";
+                } else {
+                    $row = $q_FiszkaData->fetch_row(); ?>
+                    <h1>Edytowanie fiszki <?= $row[1]; ?></h1>
+                    <form action="" method="post">
+                        <input type="text" name="pytanie" value="<?= $row[1]; ?>" placeholder="<?= $row[1]; ?>" required><br>
+                        <input type="text" name="odpowiedz" value="<?= $row[2]; ?>" placeholder=<?= $row[2]; ?> required><br>
+                        <input type="submit" value="Edytuj">
+                    </form>
+                    <?php
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                        $pytanie = $_POST['pytanie'];
+                        $odpowiedz = $_POST['odpowiedz'];
+
+                        $conn->query("UPDATE fiszki SET pytanie = '$pytanie', odpowiedz = '$odpowiedz' WHERE fiszka_id = '$fiszka_id';");
+                        header("Location: index.php");
+                    }
+                }
+            }
+            break;
+    }
 }
 include "includes/footer.php";
 ?>
