@@ -43,16 +43,15 @@ if (!isset($_GET['action'])) {
                 if ($q_FiszkaData->num_rows == 0) {
                     echo "<p class='error-text'>Wybrano niepoprawną fiszkę!</p>";
                 } else {
-                    $row = $q_FiszkaData->fetch_row(); ?>
-                    <h1>Edytowanie fiszki <?= $row[1]; ?></h1>
+                    $row = $q_FiszkaData->fetch_assoc(); ?>
                     <form action="" method="post" class="main-form">
                         <div class="form-group">
                             <label class="form-label" for="pytanie">Pytanie:</label>
-                            <input type="text" name="pytanie" id="pytanie" value="<?= $row[1]; ?>" placeholder="<?= $row[1]; ?>" class="form-input" required>
+                            <input type="text" name="pytanie" id="pytanie" value="<?= $row['pytanie']; ?>" placeholder="<?= $row['pytanie']; ?>" class="form-input" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="odpowiedz">Odpowiedź:</label>
-                            <input type="text" name="odpowiedz" id="odpowiedz" value="<?= $row[2]; ?>" placeholder=<?= $row[2]; ?> required>
+                            <input type="text" name="odpowiedz" id="odpowiedz" value="<?= $row['odpowiedz']; ?>" placeholder="<?= $row['odpowiedz']; ?>" class="form-input" required>
                         </div>
                         <div class="form-group">
                             <input type="submit" value="Edytuj" class="form-submit">
