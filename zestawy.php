@@ -66,12 +66,14 @@ if (!isset($_GET['action'])) {
                         $licznik = 1;
                         while ($a_fiszkaInZestaw = $q_fiszkasInZestaw->fetch_assoc()) {
                             echo "<div class='zestaw' id='zestaw".$licznik."' style='display: none;'>";
+                            echo "<div class='zestaw-inner' id='zestaw-inner".$licznik."' style='display: none;'>";
                                 echo "<div class='pytanie' id='pytanie".$licznik."'>";
                                     echo "<p>".$a_fiszkaInZestaw['pytanie']."</p>";
                                 echo "</div>";
                                 echo "<div class='odpowiedz' id='odpowiedz".$licznik."' style='display: none;'>";
                                     echo "<p>".$a_fiszkaInZestaw['odpowiedz']."</p>";
                                 echo "</div>";
+                            echo "</div>";
                             echo "</div>";
                             $licznik++;
                         }
