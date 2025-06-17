@@ -19,7 +19,7 @@
         </section>
         <nav class="header-nav">
             <a href="index.php" class="header-button">Strona Główna</a>
-            <!-- TODO: add fiszkas set -->
+            <a href="zestawy.php" class="header-button">Dodaj zestaw</a>
         </nav>
     </header>
     <main>
