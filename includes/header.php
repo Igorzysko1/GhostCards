@@ -22,11 +22,11 @@ require_once 'db_connection.php';
         </section>
         <nav class="header-nav">
             <a href="index.php" class="header-button">Strona Główna</a>
-            <a href="zestawy.php?action=add" class="header-button">Dodaj zestaw</a>
             <?php
             if (!isset($_SESSION['uzytkownik_id'])) {
                 echo "<a href='logowanie.php' class='header-button'>Zaloguj się</a>";
             } else {
+                echo "<a href='zestawy.php?action=add' class='header-button'>Dodaj zestaw</a>";
                 echo "<a href='wyloguj.php' class='header-button'>Wyloguj się</a>";
             }
             ?>
