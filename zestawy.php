@@ -66,7 +66,7 @@ if (!isset($_GET['action'])) {
                         $licznik = 1;
                         while ($a_fiszkaInZestaw = $q_fiszkasInZestaw->fetch_assoc()) {
                             echo "<div class='zestaw' id='zestaw".$licznik."' style='display: none;'>";
-                            echo "<div class='zestaw-inner' id='zestaw-inner".$licznik."' style='display: none;'>";
+                            echo "<div class='zestaw-inner' id='zestaw-inner".$licznik."'>";
                                 echo "<div class='pytanie' id='pytanie".$licznik."'>";
                                     echo "<p>".$a_fiszkaInZestaw['pytanie']."</p>";
                                 echo "</div>";
@@ -78,8 +78,8 @@ if (!isset($_GET['action'])) {
                             $licznik++;
                         }
                         echo "<div class='fiszkas-buttons'>";
-                        echo "<button class='fiszka-prev' onclick='previousFiszka()'>←Poprzednia fiszka</button>";
-                        echo "<button class='fiszka-next' onclick='nextFiszka()'>Następna fiszka→</button>";
+                        echo "<button class='fiszka-prev' onclick='previousFiszka()'><i class='fa fa-angle-double-left'></i>&nbsp;&nbsp;Poprzednia fiszka</button>";
+                        echo "<button class='fiszka-next' onclick='nextFiszka()'>Następna fiszka&nbsp;&nbsp;<i class='fa fa-angle-double-right'></i></button>";
                         echo "</div>";
                     }
                 }

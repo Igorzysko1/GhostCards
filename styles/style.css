@@ -213,7 +213,7 @@ main {
 }
 
 .view-fiszka {
-  color: var(--orange-light);
+  color: var(--green-light);
   text-decoration: none;
   font-size: 120%;
   transition: 0.3s;
@@ -222,8 +222,8 @@ main {
 }
 
 .view-fiszka:hover {
-  color: var(--orange-dark);
-  background-color: var(--orange-light);
+  color: var(--green-dark);
+  background-color: var(--green-light);
 }
 
 .fiszka-set-text {
@@ -235,6 +235,49 @@ main {
 .fiszka-set-counter {
   align-self: start;
   color: var(--purple-light);
+}
+
+.fiszka-next,
+.fiszka-prev {
+  padding: 10px;
+  margin: 10px;
+  font-size: 130%;
+}
+
+.fiszka-next {
+  background-color: var(--purple-dark);
+  color: var(--purple-light);
+  transition: 0.3s;
+  border: none;
+  outline: none;
+}
+
+.fiszka-next:hover {
+  background-color: var(--purple-light);
+  color: var(--purple-dark);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.fiszka-prev {
+  background-color: var(--purple-dark);
+  color: var(--purple-light);
+  transition: 0.3s;
+  border: none;
+  outline: none;
+}
+
+.fiszka-prev:hover {
+  background-color: var(--purple-light);
+  color: var(--purple-dark);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.fiszka-next:disabled,
+.fiszka-prev:disabled {
+  background-color: #7a7a7a;
+  color: rgb(74, 74, 74);
 }
 
 /* listing styles end */
@@ -298,3 +341,83 @@ main {
 }
 
 /* form styles end */
+
+/* fiszka animation start */
+
+/* Kontener główny */
+.zestaw {
+  width: 20%;
+  height: 200px;
+  perspective: 1000px;
+  margin: 20px auto;
+}
+
+/* Wewnętrzny kontener animacji */
+.zestaw-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Stan flipped */
+.zestaw-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+/* Styl wspólny dla przodu i tyłu */
+.pytanie,
+.odpowiedz {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-size: 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: var(--purple-light);
+  backdrop-filter: blur(4px);
+  color: var(--purple-dark);
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+/* Domyślne stany */
+.pytanie {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+}
+
+.odpowiedz {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: rotateY(180deg);
+  background: var(--purple-dark);
+  backdrop-filter: blur(4px);
+  color: var(--purple-light);
+}
+
+/* Stany po flipnięciu */
+.zestaw-inner.flipped .pytanie {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.zestaw-inner.flipped .odpowiedz {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* fiszka animation end */
