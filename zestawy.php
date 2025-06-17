@@ -77,19 +77,21 @@ if (!isset($_GET['action'])) {
                             if (isset($_SESSION['uzytkownik_id'])) {
                                 echo "<a href='zestawy.php?action=podpowiedz&fiszka_id=".$a_fiszkaInZestaw['fiszka_id']."' class='ui-button hint-button'>Dodaj podpowiedź</a>";
                             }
-                            echo "</div>";
                             $fiszka_id = $a_fiszkaInZestaw['fiszka_id'];
                             $q_selectHints = $conn->query("SELECT * FROM podpowiedzi WHERE fiszka_id = '$fiszka_id';");
                             if ($q_selectHints->num_rows > 0) {
                                 $losowa_liczba = 1;
+                                echo "<div class='hints'>";
                                 while($a_selectHint = $q_selectHints->fetch_assoc()) {
                                     $losowa_liczba = rand(1, 3);
-                                    echo "<div class='hints'>";
-                                    echo "<img src='images/ghost".$losowa_liczba.".png' style='width: 100px; height: 100px; alt='duszek'>";
-                                    echo "<big>".$a_selectHint['tresc']."</big>";
+                                    echo "<div class='hints-inner'>";
+                                    echo "<img src='images/ghost".$losowa_liczba.".png' style='width: 100px; height: 100px; alt='duszek' class='ghost_photo'>";
+                                    echo "<p class='hint-text'>".$a_selectHint['tresc']."</p>";
                                     echo "</div>";
                                 }
+                                echo "</div>";
                             }
+                            echo "</div>";
                             $licznik++;
                         }
                         echo "<div class='fiszkas-buttons'>";

@@ -180,7 +180,6 @@ main {
   align-items: center;
   justify-content: center;
   gap: 50px;
-  height: fit-content;
 }
 
 /* main styles end */
@@ -364,16 +363,21 @@ main {
 
 /* Kontener główny */
 .zestaw {
-  width: 20%;
-  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
   perspective: 1000px;
   margin: 20px auto;
+  height: fit-content;
+  min-height: 500px;
 }
 
 /* Wewnętrzny kontener animacji */
 .zestaw-inner {
-  width: 100%;
-  height: 100%;
+  min-width: 100%;
+  height: fit-content;
+  min-height: 200px;
   transition: transform 0.6s;
   transform-style: preserve-3d;
   cursor: pointer;
@@ -392,8 +396,8 @@ main {
 .pytanie,
 .odpowiedz {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
   backface-visibility: hidden;
   display: flex;
   align-items: center;
@@ -441,3 +445,26 @@ main {
 }
 
 /* fiszka animation end */
+
+/* hints styles start */
+
+.hints {
+  width: fit-content;
+  height: fit-content;
+}
+
+.hints-inner {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  background-color: #dbdbdb3d;
+  border-radius: 10px;
+  display: none;
+}
+
+.hint-text {
+  color: var(--purple-light);
+}
+
+/* hints styles end */

@@ -25,6 +25,10 @@ document.querySelectorAll(".zestaw").forEach((card) => {
   });
 });
 
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
 function displayFiszka() {
   let targetId = "#zestaw" + currentFiszka.toString();
 
@@ -34,6 +38,12 @@ function displayFiszka() {
   });
 
   document.querySelector(targetId).style.display = "flex";
+  const hintsArr = document
+    .querySelector(targetId)
+    .querySelector(".hints")
+    .querySelectorAll(".hints-inner");
+
+  hintsCount = hintsArr.length;
 
   console.log(currentFiszka);
 
