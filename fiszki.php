@@ -10,7 +10,7 @@ if (!isset($_GET['action'])) {
             break;
 
         case "add": ?>
-            <form action="" method="post">
+            <form action="" method="post" class="main-form">
                 <input type="text" name="pytanie" required><br>
                 <input type="text" name="odpowiedz" required><br>
                 <input type="submit" value="Wyślij">
