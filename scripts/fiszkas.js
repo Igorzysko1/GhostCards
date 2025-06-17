@@ -25,8 +25,10 @@ document.querySelectorAll(".zestaw").forEach((card) => {
   });
 });
 
-function getRandomArbitrary(min, max) {
-  return Math.random() * (max - min) + min;
+function getRandomInt(min, max) {
+  const minCeiled = Math.ceil(min);
+  const maxFloored = Math.floor(max);
+  return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
 }
 
 function displayFiszka() {
@@ -38,12 +40,28 @@ function displayFiszka() {
   });
 
   document.querySelector(targetId).style.display = "flex";
-  const hintsArr = document
-    .querySelector(targetId)
-    .querySelector(".hints")
-    .querySelectorAll(".hints-inner");
+  const target = document.querySelector(targetId);
+  let hintsArr = [];
+
+  if (target) {
+    const hints = target.querySelector(".hints");
+    if (hints) {
+      hintsArr = hints.querySelectorAll(".hints-inner");
+    }
+  }
 
   hintsCount = hintsArr.length;
+
+  if (hintsCount > 0) {
+    setInterval(() => {
+      let rand = getRandomInt(0, hintsCount);
+      hintsArr.forEach((div) => {
+        div.style.display = "none";
+      });
+      hintsArr[rand].style.display = "block";
+      console.log(rand);
+    }, getRandomInt(4000, 7000));
+  }
 
   console.log(currentFiszka);
 
