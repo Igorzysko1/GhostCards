@@ -1,8 +1,12 @@
-<?php include "includes/header.php"; ?>
-
+<?php include "includes/header.php"; 
+if (!isset($_SESSION['uzytkownik_id'])) {
+    echo "<p class='text-normal'>Aby skorzystać z pełni funkcjonalności naszej aplikacji, stwórz konto lub się zaloguj!</p>";
+}
+?>
 <p class="heading-text">Zestawy fiszek:</p>
 <?php
 $q_selectZestawy = $conn->query("SELECT * FROM zestawy;");
+
 
 echo "<div class='fiszkas-list'>";
 
