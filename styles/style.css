@@ -3,9 +3,9 @@
 :root {
   --green-dark: #228b22;
   --green-light: #7cfc00;
-  --orange-dark: #ff8c00;
+  --orange-dark: #e0722e;
   --orange-dark-bg: #855214db;
-  --orange-light: #b87700;
+  --orange-light: #ff9500;
   --orange-accent: #ff5900;
   --purple-dark: #4c004c;
   --purple-dark-bg: #660066da;
@@ -31,7 +31,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  gap: 100px;
+  gap: 50px;
 
   background: url(../images/main-bg.png);
 }
@@ -45,6 +45,21 @@ body {
 header,
 footer {
   border-radius: 10px;
+}
+
+.text-normal {
+  color: var(--purple-light);
+}
+
+.ui-button {
+  color: var(--orange-dark);
+  padding: 5px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.ui-button:hover {
+  color: var(--orange-light);
 }
 
 /* misc end */
@@ -149,9 +164,11 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  justify-content: center;
+  gap: 50px;
 
   height: 80vh;
+  overflow-y: auto;
 }
 
 /* main styles end */
@@ -175,6 +192,7 @@ main {
   width: fit-content;
   border-radius: 20px;
   padding: 20px;
+  margin: 10px;
   background-color: var(--purple-dark);
   backdrop-filter: blur(4px);
 

@@ -14,7 +14,7 @@
     </div>
 </form>
 
-<p class="text-normal">Nie masz konta? <a href="rejestracja.php">Stwórz konto</a></p>
+<p class="text-normal">Nie masz konta? <a href="rejestracja.php" class="ui-button">Stwórz konto</a></p>
 
 <?php
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
