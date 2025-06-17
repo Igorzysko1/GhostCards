@@ -27,23 +27,17 @@ if (!isset($_GET['action'])) {
                     if (isset($_SESSION['uzytkownik_id'])) {
                         $uzytkownik_id = $_SESSION['uzytkownik_id'];
                         $row_zestawData = $q_zestawData->fetch_assoc();
-                        echo "<div style='display: flex; gap: 20px;'>";
-                        if ($uzytkownik_id = $row_zestawData['uzytkownik_id']) {
-                            echo "<a href='fiszki.php?action=add&zestaw_id=".$zestaw_id."' class='ui-button-important'>Dodaj fiszkę do zestawu</a>";
-                        }
                     }
                     $q_fiszkasInZestaw = $conn->query("SELECT * FROM fiszki f INNER JOIN zestawy z ON f.zestaw_id = z.zestaw_id WHERE f.zestaw_id = '$zestaw_id';");
-                    
-                    if ($q_fiszkasInZestaw != 0) {
-                        echo "<a href='zestawy.php?action=play&zestaw_id=".$zestaw_id."' class='ui-button-important'>Zagraj w zestaw</a>";
-                    }
-                    echo "</div>";
                     
                     if ($q_fiszkasInZestaw->num_rows == 0) {
                         echo "<p class='text-normal'>Wybrany zestaw fiszek jest pusty.</p>";
                     } else {
+                        if ($uzytkownik_id = $row_zestawData['uzytkownik_id']) {
+                            echo "<a href='fiszki.php?action=add&zestaw_id=".$zestaw_id."' class='ui-button-important'>Dodaj fiszkę do zestawu</a>";
+                        }
                         $licznik = 1;
-                        
+                        echo "<a href='zestawy.php?action=play&zestaw_id=".$zestaw_id."' class='ui-button-important'>Zagraj w zestaw</a>";
                         echo "<div class='fiszkas-list'>";
                         while ($a_fiszkaInZestaw = $q_fiszkasInZestaw->fetch_assoc()) {
                             echo "<div class='fiszka-set'>";
