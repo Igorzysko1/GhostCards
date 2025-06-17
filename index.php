@@ -9,6 +9,7 @@ while ($a_selectFiszka = $q_selectFiszkas->fetch_assoc()) {
     echo "<p>";
     echo "<h3>".$a_selectFiszka['pytanie']."</h3>";
     echo "<a href='fiszki.php?action=edit&fiszka_id=".$a_selectFiszka['fiszka_id']."'>Edytuj fiszkę</a>";
+    echo "<a href='fiszki.php?action=delete&fiszka_id=".$a_selectFiszka['fiszka_id']."'>Usuń fiszkę</a>";
     echo "</p>";
 }
 ?>
