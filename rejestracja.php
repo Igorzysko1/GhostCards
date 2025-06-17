@@ -1,8 +1,14 @@
 <?php include "includes/header.php"; ?>
 
 <form action="" method="post">
-    <input type="text" name="nazwa" required><br>
-    <input type="password" name="haslo" required><br>
+    <div class="form-group">
+        <label for="nazwa">Wpisz nazwę użytkownika</label>
+        <input type="text" name="nazwa" id="nazwa" required>
+    </div>
+    <div class="form-group">
+        <label for="haslo">Wpisz hasło</label>
+        <input type="password" name="haslo" id="haslo" required>
+    </div>
     <input type="submit" value="Zarejestruj się">
 </form>
 
