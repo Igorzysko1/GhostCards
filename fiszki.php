@@ -63,7 +63,9 @@ if (!isset($_GET['action'])) {
                         $odpowiedz = $_POST['odpowiedz'];
 
                         $conn->query("UPDATE fiszki SET pytanie = '$pytanie', odpowiedz = '$odpowiedz' WHERE fiszka_id = '$fiszka_id';");
-                        header("Location: index.php");
+                        $q_ktoryZestaw = $conn->query("SELECT z.zestaw_id FROM zestawy z INNER JOIN fiszki f ON z.zestaw_id = f.zestaw_id WHERE f.fiszka_id = '$fiszka_id';");
+                        $row_ktoryZestaw = $q_ktoryZestaw->fetch_assoc();
+                        header("Location: zestawy.php?action=view&zestaw_id=".$row_ktoryZestaw['zestaw_id']);
                     }
                 }
             }
@@ -73,8 +75,10 @@ if (!isset($_GET['action'])) {
                 echo "<p class='error-text'>Brak id fiszki!</p>";
             } else {
                 $fiszka_id = $_GET['fiszka_id'];
+                $q_ktoryZestaw = $conn->query("SELECT z.zestaw_id FROM zestawy z INNER JOIN fiszki f ON z.zestaw_id = f.zestaw_id WHERE f.fiszka_id = '$fiszka_id';");
+                $row_ktoryZestaw = $q_ktoryZestaw->fetch_assoc();
                 $conn->query("DELETE FROM fiszki WHERE fiszka_id = '$fiszka_id';");
-                header("Location: index.php");
+                header("Location: zestawy.php?action=view&zestaw_id=".$row_ktoryZestaw['zestaw_id']);
             }
             break;
     }
