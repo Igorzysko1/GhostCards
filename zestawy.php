@@ -27,15 +27,15 @@ if (!isset($_GET['action'])) {
                     if (isset($_SESSION['uzytkownik_id'])) {
                         $uzytkownik_id = $_SESSION['uzytkownik_id'];
                         $row_zestawData = $q_zestawData->fetch_assoc();
-                    }
-                    $q_fiszkasInZestaw = $conn->query("SELECT * FROM fiszki f INNER JOIN zestawy z ON f.zestaw_id = z.zestaw_id WHERE f.zestaw_id = '$zestaw_id';");
-                    
-                    if ($q_fiszkasInZestaw->num_rows == 0) {
-                        echo "<p class='text-normal'>Wybrany zestaw fiszek jest pusty.</p>";
-                    } else {
                         if ($uzytkownik_id = $row_zestawData['uzytkownik_id']) {
                             echo "<a href='fiszki.php?action=add&zestaw_id=".$zestaw_id."' class='ui-button-important'>Dodaj fiszkę do zestawu</a>";
                         }
+                    }
+                    $q_fiszkasInZestaw = $conn->query("SELECT * FROM fiszki f INNER JOIN zestawy z ON f.zestaw_id = z.zestaw_id WHERE f.zestaw_id = '$zestaw_id';");
+
+                    if ($q_fiszkasInZestaw->num_rows == 0) {
+                        echo "<p class='text-normal'>Wybrany zestaw fiszek jest pusty.</p>";
+                    } else {
                         $licznik = 1;
                         echo "<a href='zestawy.php?action=play&zestaw_id=".$zestaw_id."' class='ui-button-important'>Zagraj w zestaw</a>";
                         echo "<div class='fiszkas-list'>";
@@ -95,7 +95,7 @@ if (!isset($_GET['action'])) {
                                 echo "<div class='hints'>";
                                 while($a_selectHint = $q_selectHints->fetch_assoc()) {
                                     $losowa_liczba = rand(1, 3);
-                                    echo "<div class='hints-inner fade-in'>";
+                                    echo "<div class='hints-inner'>";
                                     echo "<img src='images/ghost".$losowa_liczba.".png' style='width: 100px; height: 100px; alt='duszek' class='ghost_photo'>";
                                     echo "<p class='hint-text'>".$a_selectHint['tresc']."</p>";
                                     echo "</div>";
