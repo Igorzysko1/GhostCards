@@ -15,6 +15,8 @@ while ($a_selectZestaw = $q_selectZestawy->fetch_assoc()) {
         } else {
             echo "<p class='fiszka-set-name'>".$a_selectZestaw['nazwa']."</p>";
         }
+    } else {
+        echo "<p class='fiszka-set-name'>".$a_selectZestaw['nazwa']."</p>";
     }
     echo "<a href='zestawy.php?action=view&zestaw_id=".$a_selectZestaw['zestaw_id']."' class='view-fiszka'><i class='fa fa-eye'></i>&nbsp;&nbsp;Zobacz zestaw</a>";
     if (isset($_SESSION['uzytkownik_id'])) {
