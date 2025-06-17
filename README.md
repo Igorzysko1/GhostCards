@@ -14,7 +14,7 @@ GhostCards to aplikacja stworzona z myślą o uczniach szkół każdego rodzaju.
 ## 🛠️ Użyte technologie
 
 - **HTML5** – struktura aplikacji
-- **CSS3** – stylowanie, animacje 3D oraz efekty fade-in/fade-out dla płynnych przejść
+- **CSS3** – stylowanie, animacje
 - **JavaScript (ES6+)** – obsługa logiki aplikacji, dynamiczne zmiany DOM, animacje, interwały, obsługa zdarzeń użytkownika
 - **PHP** – obsługa logiki po stronie serwera, przetwarzanie danych, integracja z bazą danych oraz dynamiczne generowanie treści strony
 
