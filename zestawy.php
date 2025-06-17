@@ -56,16 +56,17 @@ if (!isset($_GET['action'])) {
                     if ($q_fiszkasInZestaw->num_rows == 0) {
                         echo "<p class='error-text'>Wybrany zestaw jest pusty.</p>";
                     } else {
-                        $counter = 1;
+                        $licznik = 1;
                         while ($a_fiszkaInZestaw = $q_fiszkasInZestaw->fetch_assoc()) {
-                            echo "<div class='zestaw' id='zestaw".$counter."' style='display: none;'>";
-                                echo "<div class='pytanie' id='pytanie".$counter."'>";
+                            echo "<div class='zestaw' id='zestaw".$licznik."' style='display: none;'>";
+                                echo "<div class='pytanie' id='pytanie".$licznik."'>";
                                     echo "<p>".$a_fiszkaInZestaw['pytanie']."</p>";
                                 echo "</div>";
-                                echo "<div class='odpowiedz' id='odpowiedz".$counter."'>";
+                                echo "<div class='odpowiedz' id='odpowiedz".$licznik."'>";
                                     echo "<p>".$a_fiszkaInZestaw['odpowiedz']."</p>";
                                 echo "</div>";
                             echo "</div>";
+                            $licznik++;
                         }
                     }
                 }
