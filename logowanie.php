@@ -1,0 +1,30 @@
+<?php include "includes/header.php"; ?>
+
+<form action="" method="post">
+    <div class="form-group">
+        <label for="nazwa">Wpisz nazwę użytkownika</label>
+        <input type="text" name="nazwa" id="nazwa" required>
+    </div>
+    <div class="form-group">
+        <label for="haslo">Wpisz hasło</label>
+        <input type="password" name="haslo" id="haslo" required>
+    </div>
+    <input type="submit" value="Zaloguj się">
+</form>
+
+<?php
+if ($_SERVER['REQUEST_METHOD'] === "POST") {
+    $nazwa = $_POST['nazwa'];
+    $haslo = md5($_POST['haslo']);
+
+    $q_usernameCheck = $conn->query("SELECT uzytkownik_id FROM uzytkownicy WHERE nazwa = '$nazwa';");
+    if ($q_usernameCheck->num_rows == 0) {
+        echo "<p class='error-text'>Użytkownik o podanej nazwie nie istnieje.</p>";
+    } else {
+        $row_usernameCheck = $q_usernameCheck->fetch_assoc();
+        $_SESSION['uzytkownik_id'] = $row_usernameCheck['uzytkownik_id'];
+        header("Location: index.php");
+    }
+}
+include "includes/footer.php";
+?>
