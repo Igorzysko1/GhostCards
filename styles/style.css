@@ -219,6 +219,7 @@ main {
   transition: 0.3s;
   padding: 5px;
   border-radius: 8px;
+  width: 100%;
 }
 
 .view-fiszka:hover {
