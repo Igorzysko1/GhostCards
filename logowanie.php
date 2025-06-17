@@ -12,18 +12,24 @@
     <input type="submit" value="Zaloguj się">
 </form>
 
+<p>Nie masz konta? <a href="rejestracja.php">Stwórz konto</a></p>
+
 <?php
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $nazwa = $_POST['nazwa'];
     $haslo = md5($_POST['haslo']);
 
-    $q_usernameCheck = $conn->query("SELECT uzytkownik_id FROM uzytkownicy WHERE nazwa = '$nazwa';");
+    $q_usernameCheck = $conn->query("SELECT uzytkownik_id, haslo FROM uzytkownicy WHERE nazwa = '$nazwa';");
     if ($q_usernameCheck->num_rows == 0) {
         echo "<p class='error-text'>Użytkownik o podanej nazwie nie istnieje.</p>";
     } else {
         $row_usernameCheck = $q_usernameCheck->fetch_assoc();
-        $_SESSION['uzytkownik_id'] = $row_usernameCheck['uzytkownik_id'];
-        header("Location: index.php");
+        if ($haslo == md5($row_usernameCheck['haslo'])) {
+            echo "<p class='error-text'>Niepoprawne hasło!</p>";
+        } else {
+            $_SESSION['uzytkownik_id'] = $row_usernameCheck['uzytkownik_id'];
+            header("Location: index.php");
+        }
     }
 }
 include "includes/footer.php";
