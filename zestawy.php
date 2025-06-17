@@ -39,6 +39,24 @@ if (!isset($_GET['action'])) {
                 }
             }
             break;
+        
+        case "add":
+            if (!isset($_SESSION['uzytkownik_id'])) {
+                header("Location: logowanie.php");
+            } else {
+                ?>
+                <form action="" method="post" class="main-form">
+                    <div class="form-group">
+                        <label for="nazwa" class="form-label">Podaj nazwę nowego zestawu</label>
+                        <input type="text" name="nazwa" id="nazwa" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Dodaj zestaw" class="form-submit">
+                    </div>
+                </form>
+                <?php
+            }
+            break;
     }
 }
 
