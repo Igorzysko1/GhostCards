@@ -1,5 +1,10 @@
 <?php
 include "includes/header.php";
+?>
+
+<script src="scripts/fiszkas.js" defer></script>
+
+<?php
 
 if (!isset($_GET['action'])) {
     echo "<p class='error-text'>Nie wybrano akcji!</p>";
@@ -64,12 +69,16 @@ if (!isset($_GET['action'])) {
                                 echo "<div class='pytanie' id='pytanie".$licznik."'>";
                                     echo "<p>".$a_fiszkaInZestaw['pytanie']."</p>";
                                 echo "</div>";
-                                echo "<div class='odpowiedz' id='odpowiedz".$licznik."'>";
+                                echo "<div class='odpowiedz' id='odpowiedz".$licznik."' style='display: none;'>";
                                     echo "<p>".$a_fiszkaInZestaw['odpowiedz']."</p>";
                                 echo "</div>";
                             echo "</div>";
                             $licznik++;
                         }
+                        echo "<div class='fiszkas-buttons'>";
+                        echo "<button class='fiszka-prev' onclick='previousFiszka()'>←Poprzednia fiszka</button>";
+                        echo "<button class='fiszka-next' onclick='nextFiszka()'>Następna fiszka→</button>";
+                        echo "</div>";
                     }
                 }
             }
