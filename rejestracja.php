@@ -18,8 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $haslo = md5($_POST['haslo']);
 
     $q_usernameCheck = $conn->query("SELECT uzytkownik_id FROM uzytkownicy WHERE nazwa = '$nazwa';");
-    $row_usernameCheck = $q_usernameCheck->fetch_assoc();
-    if ($row_usernameCheck->num_rows > 0) {
+    if ($q_usernameCheck->num_rows > 0) {
         echo "<p class='error-text'>Podana nazwa użytkownika już istnieje!</p>";
     } else {
         $conn->query("INSERT INTO uzytkownicy (nazwa, haslo) VALUES ('$nazwa', '$haslo');");
