@@ -1,6 +1,137 @@
+/* misc start */
+
+:root {
+  --green-dark: #228b22;
+  --green-light: #7cfc00;
+  --orange-dark: #ff8c00;
+  --orange-light: #ffa500;
+  --orange-accent: #ff5900;
+  --purple-dark: #800080;
+  --purple-dark-bg: #800080c3;
+  --purple-light: #da70d6;
+  --black: #1a1a1a;
+  --white: #f8f8ff;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Inter";
 }
+
+body {
+  margin: 0;
+  padding: 20px 0;
+
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* misc end */
+
+/* header styles start */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 90%;
+  height: 100px;
+  padding: 10px 5%;
+
+  background: var(--purple-dark-bg);
+  color: var(--orange-light);
+}
+
+/* TODO: change placement after logo is added */
+.header-data {
+  display: flex;
+  justify-content: space-evenly;
+  width: 40%;
+}
+
+.header-nav {
+  display: flex;
+}
+
+.app-name {
+  font-size: 140%;
+}
+
+.letter-highlight {
+  color: var(--orange--accent);
+  font-size: larger;
+}
+
+.header-button {
+  color: var(--purple-light);
+  font-size: 110%;
+  text-decoration: none;
+  transition: 0.3s;
+  border-radius: 6px;
+}
+
+.header-button:hover {
+  transition: 0.3s;
+  padding: 5px;
+  background: var(--purple-light);
+  color: var(--purple-dark);
+}
+
+/* header styles end */
+
+/* footer styles start */
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+
+  width: 90%;
+  height: 70px;
+  padding: 10px 5%;
+
+  background: var(--purple-dark-bg);
+}
+
+.footer-end {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 100%;
+  gap: 5%;
+}
+
+.github-link > .fa-github {
+  font-size: 200%;
+  color: var(--purple-light);
+  transition: 0.3s;
+  border-radius: 8px;
+}
+
+.github-link > .fa-github:hover {
+  transition: 0.3s;
+  padding: 5px;
+  background-color: var(--purple-light);
+  color: var(--purple-dark);
+}
+
+.authors {
+  text-decoration: underline;
+  color: var(--purple-light);
+  font-size: 90%;
+}
+
+/* footer styles end */
+
+/* main styles start */
+
+main {
+  width: 90%;
+}
+
+/* main styles end */
