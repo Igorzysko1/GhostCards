@@ -217,3 +217,12 @@ main {
 }
 
 /* listing styles end */
+
+/* form styles start */
+
+.main-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* form styles end */

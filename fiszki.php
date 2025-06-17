@@ -11,9 +11,17 @@ if (!isset($_GET['action'])) {
 
         case "add": ?>
             <form action="" method="post" class="main-form">
-                <input type="text" name="pytanie" required><br>
-                <input type="text" name="odpowiedz" required><br>
-                <input type="submit" value="Wyślij">
+                <div class="form-group">
+                    <label for="pytanie">Pytanie:</label>
+                    <input type="text" name="pytanie" id="pytanie" required>
+                </div>
+                <div class="form-group">
+                    <label for="odpowiedz">Odpowiedź:</label>
+                    <input type="text" name="odpowiedz" id="odpowiedz" required>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Wyślij">
+                </div>
             </form>
             <?php
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
